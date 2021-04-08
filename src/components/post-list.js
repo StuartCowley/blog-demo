@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// types
+import { PostType } from '../types/post.type';
+import { UserType } from '../types/user.type';
 
 // components
 import PostEntry from './post-entry';
@@ -11,39 +16,8 @@ const PostList = ({ posts, users }) => {
 };
 
 PostList.propTypes = {
-    posts: PropTypes.arrayOf(
-        PropTypes.shape({
-            userId: PropTypes.number,
-            id: PropTypes.number,
-            title: PropTypes.string,
-            body: PropTypes.string,
-        }),
-    ).isRequired,
-    users: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number,
-            name: PropTypes.string,
-            username: PropTypes.string,
-            email: PropTypes.string,
-            address: PropTypes.shape({
-                street: PropTypes.string,
-                suite: PropTypes.string,
-                city: PropTypes.string,
-                zipcode: PropTypes.string,
-                geo: PropTypes.shape({
-                    lat: PropTypes.string,
-                    lng: PropTypes.string,
-                }),
-            }),
-            phone: PropTypes.string,
-            website: PropTypes.string,
-            company: PropTypes.shape({
-                name: PropTypes.string,
-                catchPhrase: PropTypes.string,
-                bs: PropTypes.string,
-            }),
-        }),
-    ).isRequired,
+    posts: PropTypes.arrayOf(PostType).isRequired,
+    users: PropTypes.arrayOf(UserType).isRequired,
 };
 
 export default PostList;
