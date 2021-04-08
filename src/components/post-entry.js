@@ -6,6 +6,7 @@ import { UserType } from '../types/user.type';
 
 // components
 import CommentInput from './comment-input';
+import CommentList from './comment-list';
 
 const PostEntry = ({ post, user }) => {
     const { title, body } = post;
@@ -24,8 +25,6 @@ const PostEntry = ({ post, user }) => {
     const addComment = comment => {
         setComments(prev => [...prev, comment]);
     };
-
-    console.log(comments);
 
     return (
         <article
@@ -50,6 +49,7 @@ const PostEntry = ({ post, user }) => {
                 </button>
             </div>
             <CommentInput addComment={addComment} />
+            <CommentList comments={comments} />
         </article>
     );
 };
