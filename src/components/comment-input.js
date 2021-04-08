@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const CommentInput = ({ addComment }) => {
-    const defaultEmptyInput = { username: '', inputValue: '' };
+    const defaultEmptyInput = { username: '', body: '' };
     const [input, setInput] = useState(defaultEmptyInput);
 
     const updateComment = ({ name, value }) => {
@@ -22,8 +22,8 @@ const CommentInput = ({ addComment }) => {
             </div>
             <div>
                 <textarea
-                    name="inputValue"
-                    value={input.inputValue}
+                    name="body"
+                    value={input.body}
                     onChange={event => updateComment(event.target)}
                     placeholder="comment"
                 />
