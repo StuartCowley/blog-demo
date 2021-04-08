@@ -5,7 +5,7 @@ const CommentInput = ({ addComment }) => {
     const defaultEmptyInput = { username: '', inputValue: '' };
     const [input, setInput] = useState(defaultEmptyInput);
 
-    const updateComment = (name, value) => {
+    const updateComment = ({ name, value }) => {
         setInput(prev => ({ ...prev, [name]: value }));
     };
 
@@ -16,9 +16,7 @@ const CommentInput = ({ addComment }) => {
                     type="text"
                     name="username"
                     value={input.username}
-                    onChange={event =>
-                        updateComment(event.target.name, event.target.value)
-                    }
+                    onChange={event => updateComment(event.target)}
                     placeholder="username"
                 />
             </div>
@@ -26,9 +24,7 @@ const CommentInput = ({ addComment }) => {
                 <textarea
                     name="inputValue"
                     value={input.inputValue}
-                    onChange={event =>
-                        updateComment(event.target.name, event.target.value)
-                    }
+                    onChange={event => updateComment(event.target)}
                     placeholder="comment"
                 />
             </div>
