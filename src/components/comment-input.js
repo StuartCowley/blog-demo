@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const CommentInput = ({ addComment }) => {
-    const [input, setInput] = useState({ username: '', inputValue: '' });
+    const defaultEmptyInput = { username: '', inputValue: '' };
+    const [input, setInput] = useState(defaultEmptyInput);
 
     const updateComment = (name, value) => {
         setInput(prev => ({ ...prev, [name]: value }));
@@ -36,7 +37,7 @@ const CommentInput = ({ addComment }) => {
                     type="button"
                     onClick={() => {
                         addComment(input);
-                        setInput({ username: '', inputValue: '' });
+                        setInput(defaultEmptyInput);
                     }}
                 >
                     submit
