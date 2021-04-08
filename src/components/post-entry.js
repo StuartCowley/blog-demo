@@ -4,12 +4,16 @@ import React, { useState } from 'react';
 import { PostType } from '../types/post.type';
 import { UserType } from '../types/user.type';
 
+// components
+import CommentInput from './comment-input';
+
 const PostEntry = ({ post, user }) => {
     const { title, body } = post;
     const { name } = user;
 
     const [likeCounter, setLikeCounter] = useState(0);
     const [theme, setTheme] = useState('light');
+    const [comments, setComments] = useState([]);
 
     const updateCounter = () => {
         setLikeCounter(previousCounter => previousCounter + 1);
@@ -17,6 +21,12 @@ const PostEntry = ({ post, user }) => {
     const updateTheme = selectedTheme => {
         setTheme(selectedTheme);
     };
+    const addComment = comment => {
+        setComments(prev => [...prev, comment]);
+    };
+
+    console.log(comments);
+
     return (
         <article
             style={{
@@ -39,6 +49,7 @@ const PostEntry = ({ post, user }) => {
                     dark
                 </button>
             </div>
+            <CommentInput addComment={addComment} />
         </article>
     );
 };
