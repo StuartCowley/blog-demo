@@ -2,18 +2,32 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const CommentInput = ({ addComment }) => {
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState({ username: '', inputValue: '' });
 
-    const updateComment = value => {
-        setInput(value);
+    const updateComment = (name, value) => {
+        setInput(prev => ({ ...prev, [name]: value }));
     };
 
     return (
         <>
             <div>
+                <input
+                    type="text"
+                    name="username"
+                    value={input.username}
+                    onChange={event =>
+                        updateComment(event.target.name, event.target.value)
+                    }
+                    placeholder="username"
+                />
+            </div>
+            <div>
                 <textarea
-                    value={input}
-                    onChange={event => updateComment(event.target.value)}
+                    name="inputValue"
+                    value={input.inputValue}
+                    onChange={event =>
+                        updateComment(event.target.name, event.target.value)
+                    }
                     placeholder="comment"
                 />
             </div>
@@ -22,7 +36,7 @@ const CommentInput = ({ addComment }) => {
                     type="button"
                     onClick={() => {
                         addComment(input);
-                        setInput('');
+                        setInput({ username: '', inputValue: '' });
                     }}
                 >
                     submit
