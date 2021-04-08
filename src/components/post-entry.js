@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 } from 'uuid';
 
 // types
 import { PostType } from '../types/post.type';
@@ -23,7 +24,7 @@ const PostEntry = ({ post, user }) => {
         setTheme(selectedTheme);
     };
     const addComment = comment => {
-        setComments(prev => [...prev, comment]);
+        setComments(prev => [...prev, { uuid: v4(), ...comment }]);
     };
 
     return (
