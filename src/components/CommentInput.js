@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+// custom hook
 import { useForm } from '../hooks/useForm';
+
+// contexts
+import { ThemeConfig, ThemeContext } from '../contexts/ThemeContext';
 
 const CommentInput = ({ addComment }) => {
     const [input, setInput, resetInput] = useForm({ username: '', body: '' });
+    const { theme } = useContext(ThemeContext);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -14,6 +20,7 @@ const CommentInput = ({ addComment }) => {
         <form onSubmit={handleSubmit}>
             <div>
                 <input
+                    style={ThemeConfig[theme]}
                     type="text"
                     name="username"
                     value={input.username}
@@ -23,6 +30,7 @@ const CommentInput = ({ addComment }) => {
             </div>
             <div>
                 <textarea
+                    style={ThemeConfig[theme]}
                     name="body"
                     value={input.body}
                     onChange={setInput}

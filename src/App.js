@@ -3,6 +3,10 @@ import axios from 'axios';
 
 // components
 import PostList from './components/PostList';
+import Header from './components/Header';
+
+// contexts
+import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 
 // consts
 const API = 'https://jsonplaceholder.typicode.com';
@@ -12,15 +16,6 @@ const App = () => {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(undefined);
-
-    const themeConfig = {
-        light: { background: '#eee', color: '#333' },
-        dark: { background: '#333', color: '#eee' },
-    };
-
-    const updateTheme = selectedTheme => {
-        setTheme(selectedTheme);
-    };
 
     const removePost = id => {
         setPosts(prev => prev.filter(post => post.id !== id));
@@ -53,25 +48,21 @@ const App = () => {
     }, [posts]);
 
     return (
-        <div style={themeConfig[theme]}>
-            <header className="App-header">
-                <h1>Blog Demo</h1>
-                <div>
-                    <button type="button" onClick={() => updateTheme('light')}>
-                        light
-                    </button>
-                    <button type="button" onClick={() => updateTheme('dark')}>
-                        dark
-                    </button>
-                </div>
-            </header>
-            {posts.length > 0 && users.length > 0 ? (
-                <PostList posts={posts} users={users} removePost={removePost} />
-            ) : (
-                !error && <div>Loading...</div>
-            )}
-            {error && <div>{error}</div>}
-        </div>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            <div style={ThemeConfig[theme]}>
+                <Header />
+                {posts.length > 0 && users.length > 0 ? (
+                    <PostList
+                        posts={posts}
+                        users={users}
+                        removePost={removePost}
+                    />
+                ) : (
+                    !error && <div>Loading...</div>
+                )}
+                {error && <div>{error}</div>}
+            </div>
+        </ThemeContext.Provider>
     );
 };
 
