@@ -22,24 +22,24 @@ const App = () => {
         setTheme(selectedTheme);
     };
 
-    useEffect(() => {
-        axios
-            .get(`${API}/posts`)
-            .then(response => {
+    useEffect(async () => {
+        try {
+            const response = await axios.get(`${API}/posts`);
                 if (response.data && response.status === 200) {
                     setPosts(response.data);
                 }
-            })
-            .catch(() => setError('There was an error fetching posts'));
+        } catch {
+            setError('There was an error fetching posts');
+        }
 
-        axios
-            .get(`${API}/users`)
-            .then(response => {
+        try {
+            const response = await axios.get(`${API}/users`);
                 if (response.data && response.status === 200) {
                     setUsers(response.data);
                 }
-            })
-            .catch(() => setError('There was an error fetching users'));
+        } catch {
+            setError('There was an error fetching users');
+        }
     }, []);
     return (
         <div style={themeConfig[theme]}>
