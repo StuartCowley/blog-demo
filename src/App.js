@@ -22,6 +22,10 @@ const App = () => {
         setTheme(selectedTheme);
     };
 
+    const removePost = id => {
+        setPosts(prev => prev.filter(post => post.id !== id));
+    };
+
     useEffect(async () => {
         try {
             const response = await axios.get(`${API}/posts`);
@@ -56,7 +60,7 @@ const App = () => {
                 </div>
             </header>
             {posts.length > 0 && users.length > 0 ? (
-                <PostList posts={posts} users={users} />
+                <PostList posts={posts} users={users} removePost={removePost} />
             ) : (
                 !error && <div>Loading...</div>
             )}

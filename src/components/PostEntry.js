@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 // types
 import { PostType } from '../types/post.type';
@@ -9,7 +10,7 @@ import { UserType } from '../types/user.type';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 
-const PostEntry = ({ post, user }) => {
+const PostEntry = ({ post, user, children }) => {
     const { title, body } = post;
     const { name } = user;
 
@@ -34,6 +35,7 @@ const PostEntry = ({ post, user }) => {
                 <button type="button" onClick={() => updateCounter()}>
                     +
                 </button>
+                {children}
             </div>
             <CommentInput addComment={addComment} />
             <CommentList comments={comments} />
@@ -44,6 +46,7 @@ const PostEntry = ({ post, user }) => {
 PostEntry.propTypes = {
     post: PostType.isRequired,
     user: UserType.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default PostEntry;
