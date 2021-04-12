@@ -6,8 +6,8 @@ import { PostType } from '../types/post.type';
 import { UserType } from '../types/user.type';
 
 // components
-import CommentInput from './comment-input';
-import CommentList from './comment-list';
+import CommentInput from './CommentInput';
+import CommentList from './CommentList';
 
 const PostEntry = ({ post, user }) => {
     const { title, body } = post;
