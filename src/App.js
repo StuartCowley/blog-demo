@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import PostList from './components/post-list';
+import PostList from './components/PostList';
 
 // mock data
 import posts from './data/posts.json';

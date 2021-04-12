@@ -6,7 +6,7 @@ import { PostType } from '../types/post.type';
 import { UserType } from '../types/user.type';
 
 // components
-import PostEntry from './post-entry';
+import PostEntry from './PostEntry';
 
 const PostList = ({ posts, users }) => {
     return (posts || []).map(post => {
