@@ -14,26 +14,18 @@ const PostEntry = ({ post, user }) => {
     const { name } = user;
 
     const [likeCounter, setLikeCounter] = useState(0);
-    const [theme, setTheme] = useState('light');
     const [comments, setComments] = useState([]);
 
     const updateCounter = () => {
         setLikeCounter(previousCounter => previousCounter + 1);
     };
-    const updateTheme = selectedTheme => {
-        setTheme(selectedTheme);
-    };
+
     const addComment = comment => {
         setComments(prev => [...prev, { uuid: v4(), ...comment }]);
     };
 
     return (
-        <article
-            style={{
-                background: theme === 'light' ? '#eee' : '#333',
-                color: theme === 'light' ? '#333' : '#eee',
-            }}
-        >
+        <article>
             <h2>{title}</h2>
             <h3>by {name}</h3>
             <p>{body}</p>
@@ -41,12 +33,6 @@ const PostEntry = ({ post, user }) => {
                 <span>{likeCounter}</span>
                 <button type="button" onClick={() => updateCounter()}>
                     +
-                </button>
-                <button type="button" onClick={() => updateTheme('light')}>
-                    light
-                </button>
-                <button type="button" onClick={() => updateTheme('dark')}>
-                    dark
                 </button>
             </div>
             <CommentInput addComment={addComment} />
