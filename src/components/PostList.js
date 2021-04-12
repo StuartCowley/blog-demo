@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import PostEntry from './post-entry';
+import PostEntry from './PostEntry';
 
 const PostList = ({ posts, users }) => {
     return (posts || []).map(post => {
