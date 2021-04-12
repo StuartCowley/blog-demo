@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 
@@ -24,6 +24,14 @@ const PostEntry = ({ post, user, children }) => {
     const addComment = comment => {
         setComments(prev => [...prev, { uuid: v4(), ...comment }]);
     };
+
+    useEffect(() => {
+        return () => {
+            console.log(
+                `component PostEntry for post ${post.id}, has been unmounted`,
+            );
+        };
+    }, []);
 
     return (
         <article>
