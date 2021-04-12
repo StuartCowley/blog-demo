@@ -26,24 +26,24 @@ const App = () => {
         setPosts(prev => prev.filter(post => post.id !== id));
     };
 
-    useEffect(async () => {
-        try {
-            const response = await axios.get(`${API}/posts`);
-            if (response.data && response.status === 200) {
-                setPosts(response.data);
-            }
-        } catch {
-            setError('There was an error fetching posts');
-        }
+    useEffect(() => {
+        axios
+            .get(`${API}/posts`)
+            .then(response => {
+                if (response.data && response.status === 200) {
+                    setPosts(response.data);
+                }
+            })
+            .catch(() => setError('There was an error fetching posts'));
 
-        try {
-            const response = await axios.get(`${API}/users`);
-            if (response.data && response.status === 200) {
-                setUsers(response.data);
-            }
-        } catch {
-            setError('There was an error fetching users');
-        }
+        axios
+            .get(`${API}/users`)
+            .then(response => {
+                if (response.data && response.status === 200) {
+                    setUsers(response.data);
+                }
+            })
+            .catch(() => setError('There was an error fetching users'));
     }, []);
 
     useEffect(() => {
