@@ -9,18 +9,17 @@ import users from './data/users.json';
 
 const App = () => {
     const [theme, setTheme] = useState('light');
+    const themeConfig = {
+        light: { background: '#eee', color: '#333' },
+        dark: { background: '#333', color: '#eee' },
+    };
 
     const updateTheme = selectedTheme => {
         setTheme(selectedTheme);
     };
 
     return (
-        <div
-            style={{
-                background: theme === 'light' ? '#eee' : '#333',
-                color: theme === 'light' ? '#333' : '#eee',
-            }}
-        >
+        <div style={themeConfig[theme]}>
             <header className="App-header">
                 <h1>Blog Demo</h1>
                 <div>
