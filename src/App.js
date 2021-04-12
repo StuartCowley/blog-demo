@@ -58,7 +58,7 @@ const App = () => {
             {posts.length > 0 && users.length > 0 ? (
                 <PostList posts={posts} users={users} />
             ) : (
-                <div>Loading...</div>
+                !error && <div>Loading...</div>
             )}
             {error && <div>{error}</div>}
         </div>
