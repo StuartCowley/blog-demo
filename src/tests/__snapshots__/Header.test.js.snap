@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header shows theme buttons 1`] = `
+<header
+  class="App-header"
+>
+  <h1>
+    Blog Demo
+  </h1>
+  <div>
+    <button
+      type="button"
+    >
+      light
+    </button>
+    <button
+      type="button"
+    >
+      dark
+    </button>
+  </div>
+</header>
+`;
