@@ -25,22 +25,23 @@ const App = () => {
     useEffect(async () => {
         try {
             const response = await axios.get(`${API}/posts`);
-                if (response.data && response.status === 200) {
-                    setPosts(response.data);
-                }
+            if (response.data && response.status === 200) {
+                setPosts(response.data);
+            }
         } catch {
             setError('There was an error fetching posts');
         }
 
         try {
             const response = await axios.get(`${API}/users`);
-                if (response.data && response.status === 200) {
-                    setUsers(response.data);
-                }
+            if (response.data && response.status === 200) {
+                setUsers(response.data);
+            }
         } catch {
             setError('There was an error fetching users');
         }
     }, []);
+
     return (
         <div style={themeConfig[theme]}>
             <header className="App-header">
@@ -55,7 +56,7 @@ const App = () => {
                 </div>
             </header>
             {posts.length > 0 && users.length > 0 ? (
-            <PostList posts={posts} users={users} />
+                <PostList posts={posts} users={users} />
             ) : (
                 <div>Loading...</div>
             )}
