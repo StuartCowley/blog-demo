@@ -4,6 +4,9 @@ import axios from 'axios';
 // components
 import PostList from './components/PostList';
 
+// consts
+const API = 'https://jsonplaceholder.typicode.com';
+
 const App = () => {
     const [theme, setTheme] = useState('light');
     const [posts, setPosts] = useState([]);
@@ -21,7 +24,7 @@ const App = () => {
 
     useEffect(() => {
         axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get(`${API}/posts`)
             .then(response => {
                 if (response.data && response.status === 200) {
                     setPosts(response.data);
@@ -30,7 +33,7 @@ const App = () => {
             .catch(() => setError('There was an error fetching posts'));
 
         axios
-            .get('https://jsonplaceholder.typicode.com/users')
+            .get(`${API}/users`)
             .then(response => {
                 if (response.data && response.status === 200) {
                     setUsers(response.data);
