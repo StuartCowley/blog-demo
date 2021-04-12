@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from '../hooks/useForm';
 
 const CommentInput = ({ addComment }) => {
-    const defaultEmptyInput = { username: '', body: '' };
-    const [input, setInput] = useState(defaultEmptyInput);
+    const [input, setInput, resetInput] = useForm({ username: '', body: '' });
 
-    const updateComment = ({ name, value }) => {
-        setInput(prev => ({ ...prev, [name]: value }));
+    const handleSubmit = event => {
+        event.preventDefault();
+        resetInput();
     };
 
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <div>
                 <input
                     type="text"
                     name="username"
                     value={input.username}
-                    onChange={event => updateComment(event.target)}
+                    onChange={setInput}
                     placeholder="username"
                 />
             </div>
@@ -24,22 +25,16 @@ const CommentInput = ({ addComment }) => {
                 <textarea
                     name="body"
                     value={input.body}
-                    onChange={event => updateComment(event.target)}
+                    onChange={setInput}
                     placeholder="comment"
                 />
             </div>
             <div>
-                <button
-                    type="button"
-                    onClick={() => {
-                        addComment(input);
-                        setInput(defaultEmptyInput);
-                    }}
-                >
+                <button type="submit" onClick={() => addComment(input)}>
                     submit
                 </button>
             </div>
-        </>
+        </form>
     );
 };
 
