@@ -46,6 +46,12 @@ const App = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (posts.length > 0) {
+            document.title = `My blog has ${posts.length} entries`;
+        }
+    }, [posts]);
+
     return (
         <div style={themeConfig[theme]}>
             <header className="App-header">
