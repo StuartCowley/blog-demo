@@ -24,7 +24,13 @@ const PostEntry = ({ post, user }) => {
         setTheme(selectedTheme);
     };
     const addComment = comment => {
-        setComments(prev => [...prev, { uuid: v4(), ...comment }]);
+        /**
+         * @const {string} - universally unique identifier, generated using random numbers.
+         * @see {@link https://en.wikipedia.org/wiki/Universally_unique_identifier|UUID} for further `UUID` information.
+         * @see {@link https://www.npmjs.com/package/uuid|uuid package} for further `uuid` node package information.
+         */
+        const uuid = v4();
+        setComments(prev => [...prev, { uuid, ...comment }]);
     };
 
     return (
