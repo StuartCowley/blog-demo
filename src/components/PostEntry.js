@@ -27,6 +27,7 @@ const PostEntry = ({ post, user, children }) => {
 
     useEffect(() => {
         return () => {
+            /* eslint-disable-next-line no-console */
             console.log(
                 `component PostEntry for post ${post.id}, has been unmounted`,
             );
