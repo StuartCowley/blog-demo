@@ -13,7 +13,11 @@ const LikeCounter = ({
                 +
             </button>
             {likeCounter > 0 && (
-                <button type="button" onClick={() => handleDecreaseCounter()}>
+                <button
+                    type="button"
+                    data-testid="decreaseButton"
+                    onClick={() => handleDecreaseCounter()}
+                >
                     -
                 </button>
             )}

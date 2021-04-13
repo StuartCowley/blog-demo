@@ -44,6 +44,18 @@ describe('LikeCounter', () => {
     expect(screen.getByText("+")).toBeInTheDocument();
   });
 
+  it('does not displays "-" button when likes count is 0', () => {
+    const likesCount = 0;
+   const {queryByTestId} = render(
+      <LikeCounter
+        likeCounter={likesCount}
+        handleIncreaseCounter={increaseCounter}
+        handleDecreaseCounter={decreaseCounter}
+      />
+    );
+    expect(screen.queryByTestId("decreaseButton")).not.toBeInTheDocument();
+  });
+
   it('calls updateCounter prop when clicked', () => {
     const likesCount = 0;
 
