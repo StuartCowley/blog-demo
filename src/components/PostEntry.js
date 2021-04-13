@@ -9,6 +9,7 @@ import { UserType } from '../types/user.type';
 // components
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
+import LikeCounter from './LikeCounter';
 
 const PostEntry = ({ post, user, children }) => {
     const { title, body } = post;
@@ -40,10 +41,10 @@ const PostEntry = ({ post, user, children }) => {
             <h3>by {name}</h3>
             <p>{body}</p>
             <div>
-                <span>{likeCounter}</span>
-                <button type="button" onClick={() => updateCounter()}>
-                    +
-                </button>
+                <LikeCounter
+                    likeCounter={likeCounter}
+                    handleClick={updateCounter}
+                />
                 {children}
             </div>
             <CommentInput addComment={addComment} />
