@@ -10,6 +10,9 @@ export const useForm = initial => {
                 ...prev,
                 [event.target.name]: event.target.value,
             })),
-        () => setValues(initial),
+        event => {
+            event.preventDefault();
+            setValues(initial);
+        },
     ];
 };
