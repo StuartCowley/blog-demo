@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // components
 import PostList from './components/PostList';
@@ -28,19 +29,33 @@ const App = () => {
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
-            <div style={ThemeConfig[theme]}>
-                <Header />
-                {posts.length > 0 && users.length > 0 ? (
-                    <PostList
-                        posts={posts}
-                        users={users}
-                        removePost={removePost}
-                    />
-                ) : (
-                    !error && <div>Loading...</div>
-                )}
-                {error && <div>{error}</div>}
-            </div>
+            <Router>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                            <Link to="/about">About</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <Route exact path="/">
+                    <div style={ThemeConfig[theme]}>
+                        <Header />
+                        {posts.length > 0 && users.length > 0 ? (
+                            <PostList
+                                posts={posts}
+                                users={users}
+                                removePost={removePost}
+                            />
+                        ) : (
+                            <div>Loading...</div>
+                        )}
+                    </div>
+                </Route>
+                <Route path="/about">
+                    <h1>About</h1>
+                </Route>
+            </Router>
         </ThemeContext.Provider>
     );
 };
