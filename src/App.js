@@ -18,12 +18,8 @@ const API = 'https://jsonplaceholder.typicode.com';
 
 const App = () => {
     const [theme, setTheme] = useState('light');
-    const [posts, setPosts, addPost] = useFetch(`${API}/posts`);
+    const [posts, addPost, removePost] = useFetch(`${API}/posts`);
     const [users] = useFetch(`${API}/users`);
-
-    const removePost = id => {
-        setPosts(prev => prev.filter(post => post.id !== id));
-    };
 
     useEffect(() => {
         if (posts.length > 0) {
