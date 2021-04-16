@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PostList from './components/PostList';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import About from './components/About';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
@@ -46,9 +47,7 @@ const App = () => {
                         )}
                     </div>
                 </Route>
-                <Route path="/about">
-                    <h1>About</h1>
-                </Route>
+                <Route path="/about" component={About} />
             </Router>
         </ThemeContext.Provider>
     );
