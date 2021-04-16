@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // components
 import PostList from './components/PostList';
 import Header from './components/Header';
+import Navigation from './components/Navigation';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
@@ -30,14 +31,7 @@ const App = () => {
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             <Router>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                            <Link to="/about">About</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <Navigation />
                 <Route exact path="/">
                     <div style={ThemeConfig[theme]}>
                         <Header />
