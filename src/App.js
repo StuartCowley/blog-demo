@@ -18,20 +18,11 @@ const API = 'https://jsonplaceholder.typicode.com';
 
 const App = () => {
     const [theme, setTheme] = useState('light');
-    const [posts, setPosts] = useFetch(`${API}/posts`);
+    const [posts, setPosts, addPost] = useFetch(`${API}/posts`);
     const [users] = useFetch(`${API}/users`);
 
     const removePost = id => {
         setPosts(prev => prev.filter(post => post.id !== id));
-    };
-    const addPost = ({ title, body }) => {
-        setPosts(prev => {
-            const postId = Math.max(...prev.map(({ id }) => id)) + 1;
-            return [
-                { userId: prev[0].userId, id: postId, title, body },
-                ...prev,
-            ];
-        });
     };
 
     useEffect(() => {
