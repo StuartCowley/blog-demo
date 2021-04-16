@@ -6,6 +6,7 @@ import PostList from './components/PostList';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import About from './components/About';
+import Contact from './components/Contact';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
@@ -48,6 +49,7 @@ const App = () => {
                     </div>
                 </Route>
                 <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
             </Router>
         </ThemeContext.Provider>
     );
