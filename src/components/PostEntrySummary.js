@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // types
 import { PostType } from '../types/post.type';
@@ -24,7 +25,9 @@ const PostEntrySummary = ({ post, user, children }) => {
 
     return (
         <article>
-            <h2>{title}</h2>
+            <h2>
+                <Link to={`post/${post.id}`}>{title}</Link>
+            </h2>
             <h3>by {name}</h3>
             <p>{body}</p>
             <div>
