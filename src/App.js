@@ -8,13 +8,14 @@ import Navigation from './components/Navigation';
 import About from './components/About';
 import Contact from './components/Contact';
 import Create from './components/Create';
+import PostEntry from './components/PostEntry';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 import { useFetch } from './hooks/useFetch';
 
 // consts
-const API = 'https://jsonplaceholder.typicode.com';
+const API = process.env.REACT_APP_JSON_PLACEHOLDER_API;
 
 const App = () => {
     const [theme, setTheme] = useState('light');
@@ -51,6 +52,7 @@ const App = () => {
                     </Route>
                     <Route path="/about" component={About} />
                     <Route path="/contact" component={Contact} />
+                    <Route path="/post/:id" component={PostEntry} />
                 </Switch>
             </Router>
         </ThemeContext.Provider>
