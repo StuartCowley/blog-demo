@@ -25,8 +25,8 @@ const App = () => {
     const [users] = useFetch(`${API}/users`);
 
     useEffect(() => {
-        if (posts.length > 0) {
-            document.title = `My blog has ${posts.length} entries`;
+        if (posts?.length > 0) {
+            document.title = `My blog has ${posts?.length} entries`;
         }
     }, [posts]);
 
@@ -38,7 +38,7 @@ const App = () => {
                     <Route exact path="/">
                         <div style={ThemeConfig[theme]}>
                             <Header />
-                            {posts.length > 0 && users.length > 0 ? (
+                            {posts?.length > 0 && users?.length > 0 ? (
                                 <PostList
                                     posts={posts}
                                     users={users}
