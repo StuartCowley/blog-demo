@@ -11,6 +11,7 @@ const Create = ({ addPost }) => {
     });
 
     const handleSubmit = event => {
+        event.preventDefault();
         addPost({ title, body, userId: 1 });
         resetInput(event);
     };
