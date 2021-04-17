@@ -11,7 +11,7 @@ import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 import LikeCounter from './LikeCounter';
 
-const PostEntry = ({ post, user, children }) => {
+const PostEntrySummary = ({ post, user, children }) => {
     const { title, body } = post;
     const { name } = user;
 
@@ -58,10 +58,10 @@ const PostEntry = ({ post, user, children }) => {
     );
 };
 
-PostEntry.propTypes = {
+PostEntrySummary.propTypes = {
     post: PostType.isRequired,
     user: UserType.isRequired,
     children: PropTypes.node.isRequired,
 };
 
-export default PostEntry;
+export default PostEntrySummary;
