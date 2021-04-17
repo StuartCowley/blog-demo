@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useFetch = url => {
-    const [data, setState] = useState([]);
+    const [data, setState] = useState();
 
     const addData = body => {
         fetch(url, {
@@ -12,11 +12,11 @@ export const useFetch = url => {
             },
         })
             .then(response => response.json())
-            .then(json => {
+            .then(json =>
                 setState(prev => {
                     return [json, ...prev];
-                });
-            });
+                }),
+            );
     };
 
     const removeData = id => {
@@ -26,6 +26,10 @@ export const useFetch = url => {
     };
 
     useEffect(() => {
+        if (!url) {
+            return;
+        }
+
         fetch(url)
             .then(result => result.json())
             .then(result => setState(result));
