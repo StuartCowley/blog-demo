@@ -16,6 +16,13 @@ const Comment = ({ comment }) => {
     const handleReveal = () => setIsEmailVisible(true);
     const handleHide = () => setIsEmailVisible(false);
 
+    // Display details if:
+    // - identity consent was not supported when user posted,
+    // - identity consent was supported and user consented
+    //   to publish their details.
+    const displayDetails =
+        !('identityConsent' in comment) || comment.identityConsent;
+
     return (
         <li key={comment.id} data-testid="comment">
             <div>
@@ -25,9 +32,9 @@ const Comment = ({ comment }) => {
                     onMouseOut={() => handleHide()}
                     onBlur={() => handleHide()}
                 >
-                    {comment.name}:{' '}
+                    {displayDetails ? comment.name : 'Anonymous author'}:{' '}
                 </strong>
-                {isEmailVisible && <div>{comment.email}</div>}
+                {displayDetails && isEmailVisible && <div>{comment.email}</div>}
             </div>
             <p>{comment.body}</p>
             {voteCounter}
