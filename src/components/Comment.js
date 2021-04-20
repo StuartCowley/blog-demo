@@ -3,6 +3,7 @@ import { CommentType } from '../types/comment.type';
 
 const Comment = ({ comment }) => {
     const [voteCounter, setVoteCounter] = useState(0);
+    const [isEmailVisible, setIsEmailVisible] = useState(false);
 
     const handleClick = event => {
         const shouldIncrease = event.target.value === 'increase';
@@ -12,12 +13,23 @@ const Comment = ({ comment }) => {
         setVoteCounter(newCounterValue);
     };
 
+    const handleReveal = () => setIsEmailVisible(true);
+    const handleHide = () => setIsEmailVisible(false);
+
     return (
         <li key={comment.id} data-testid="comment">
-            <p>
-                <strong>{comment.name}: </strong>
-                {comment.body}
-            </p>
+            <div>
+                <strong
+                    onMouseOver={() => handleReveal()}
+                    onFocus={() => handleReveal()}
+                    onMouseOut={() => handleHide()}
+                    onBlur={() => handleHide()}
+                >
+                    {comment.name}:{' '}
+                </strong>
+                {isEmailVisible && <div>{comment.email}</div>}
+            </div>
+            <p>{comment.body}</p>
             {voteCounter}
             <button
                 type="button"
