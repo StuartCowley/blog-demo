@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CommentType } from '../types/comment.type';
 
 const CommentList = ({ comments }) => {
-    const handleClick = event => console.log(event);
+    const [voteCounter, setVoteCounter] = useState(0);
+    const handleClick = event => {
+        console.log(event.target);
+        setVoteCounter(voteCounter + 1);
+    };
+
+    useEffect(() => {
+        console.log(voteCounter);
+    }, [voteCounter]);
 
     return (
         <ul>
