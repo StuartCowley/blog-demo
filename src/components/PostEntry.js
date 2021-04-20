@@ -28,7 +28,7 @@ const PostEntry = () => {
                     <CommentInput addComment={addComment} postId={post.id} />
                     <ul>
                         {comments.map(comment => (
-                            <Comment comment={comment} />
+                            <Comment key={comment.id} comment={comment} />
                         ))}
                     </ul>
                 </>
