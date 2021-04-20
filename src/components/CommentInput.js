@@ -10,6 +10,7 @@ import { ThemeConfig, ThemeContext } from '../contexts/ThemeContext';
 const CommentInput = ({ addComment, postId }) => {
     const [input, setInput, resetInput] = useForm({
         name: '',
+        email: '',
         body: '',
         postId,
         identityConsent: false,
@@ -32,6 +33,16 @@ const CommentInput = ({ addComment, postId }) => {
                     value={input.name}
                     onChange={setInput}
                     placeholder="name"
+                />
+            </div>
+            <div>
+                <input
+                    style={ThemeConfig[theme]}
+                    type="text"
+                    name="email"
+                    value={input.email}
+                    onChange={setInput}
+                    placeholder="email"
                 />
             </div>
             <div>
