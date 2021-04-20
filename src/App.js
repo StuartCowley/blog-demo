@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from 'react-router-dom';
 
 // components
 import PostList from './components/PostList';
@@ -9,6 +14,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Create from './components/Create';
 import PostEntry from './components/PostEntry';
+import NotFound from './components/NotFound';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
@@ -55,6 +61,10 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route path="/contact" component={Contact} />
                     <Route path="/post/:id" component={PostEntry} />
+                    <Route exact path="/404" component={NotFound} />
+                    <Route>
+                        <Redirect to="/404" />
+                    </Route>
                 </Switch>
             </Router>
         </ThemeContext.Provider>
