@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // custom hook
@@ -21,6 +21,16 @@ const CommentInput = ({ addComment, postId }) => {
         resetInput(event);
     };
 
+    const [checkbox, setCheckbox] = useState(false);
+
+    const handleCheckbox = () => {
+        setCheckbox(!checkbox);
+    };
+
+    useEffect(() => {
+        console.log(checkbox);
+    }, [checkbox]);
+
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -41,6 +51,17 @@ const CommentInput = ({ addComment, postId }) => {
                     onChange={setInput}
                     placeholder="comment"
                 />
+            </div>
+            <div>
+                <label htmlFor="identityConsent">
+                    <input
+                        type="checkbox"
+                        name="identityConsent"
+                        id="identityConsent"
+                        onChange={() => handleCheckbox()}
+                    />
+                    Show my name and email
+                </label>
             </div>
             <div>
                 <button type="submit">submit</button>
