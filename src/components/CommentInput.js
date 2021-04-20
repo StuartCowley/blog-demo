@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 // custom hook
@@ -12,6 +12,7 @@ const CommentInput = ({ addComment, postId }) => {
         name: '',
         body: '',
         postId,
+        identityConsent: false,
     });
     const { theme } = useContext(ThemeContext);
 
@@ -20,16 +21,6 @@ const CommentInput = ({ addComment, postId }) => {
         addComment({ ...input });
         resetInput(event);
     };
-
-    const [checkbox, setCheckbox] = useState(false);
-
-    const handleCheckbox = () => {
-        setCheckbox(!checkbox);
-    };
-
-    useEffect(() => {
-        console.log(checkbox);
-    }, [checkbox]);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -58,7 +49,7 @@ const CommentInput = ({ addComment, postId }) => {
                         type="checkbox"
                         name="identityConsent"
                         id="identityConsent"
-                        onChange={() => handleCheckbox()}
+                        onChange={setInput}
                     />
                     Show my name and email
                 </label>
