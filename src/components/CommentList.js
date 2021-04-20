@@ -11,6 +11,8 @@ const CommentList = ({ comments }) => {
                         <strong>{comment.name}: </strong>
                         {comment.body}
                     </p>
+                    <button type="button">+ upvote</button>
+                    <button type="button">- downvote</button>
                 </li>
             ))}
         </ul>
