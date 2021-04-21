@@ -27,6 +27,7 @@
         "arrow-parens": ["error", "as-needed"],
         "max-len": ["error", { "code": 80 }],
         "comma-dangle": ["error", "always-multiline"],
+        "no-unused-vars": ["warn"],
         "import/prefer-default-export": "off",
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
