@@ -24,7 +24,7 @@ const Comment = ({ comment }) => {
         !('identityConsent' in comment) || comment.identityConsent;
 
     return (
-        <li key={comment.id} data-testid="comment">
+        <li data-testid="comment">
             <div>
                 <strong
                     onMouseOver={() => handleReveal()}
