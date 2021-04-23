@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 // types
 import { PostType } from '../types/post.type';
@@ -9,20 +10,17 @@ import { UserType } from '../types/user.type';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 
-const PostEntry = ({ post, user }) => {
+const PostEntry = ({ post, user, children }) => {
     const { title, body } = post;
     const { name } = user;
 
     const [likeCounter, setLikeCounter] = useState(0);
-    const [theme, setTheme] = useState('light');
     const [comments, setComments] = useState([]);
 
     const updateCounter = () => {
         setLikeCounter(previousCounter => previousCounter + 1);
     };
-    const updateTheme = selectedTheme => {
-        setTheme(selectedTheme);
-    };
+
     const addComment = comment => {
         /**
          * @const {string} - universally unique identifier, generated using random numbers.
@@ -33,13 +31,16 @@ const PostEntry = ({ post, user }) => {
         setComments(prev => [...prev, { uuid, ...comment }]);
     };
 
+    useEffect(() => {
+        return () => {
+            console.log(
+                `component PostEntry for post ${post.id}, has been unmounted`,
+            );
+        };
+    }, []);
+
     return (
-        <article
-            style={{
-                background: theme === 'light' ? '#eee' : '#333',
-                color: theme === 'light' ? '#333' : '#eee',
-            }}
-        >
+        <article>
             <h2>{title}</h2>
             <h3>by {name}</h3>
             <p>{body}</p>
@@ -48,12 +49,7 @@ const PostEntry = ({ post, user }) => {
                 <button type="button" onClick={() => updateCounter()}>
                     +
                 </button>
-                <button type="button" onClick={() => updateTheme('light')}>
-                    light
-                </button>
-                <button type="button" onClick={() => updateTheme('dark')}>
-                    dark
-                </button>
+                {children}
             </div>
             <CommentInput addComment={addComment} />
             <CommentList comments={comments} />
@@ -64,6 +60,7 @@ const PostEntry = ({ post, user }) => {
 PostEntry.propTypes = {
     post: PostType.isRequired,
     user: UserType.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default PostEntry;

@@ -1,45 +1,48 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-const CommentInput = ({ addComment }) => {
-    const defaultEmptyInput = { username: '', body: '' };
-    const [input, setInput] = useState(defaultEmptyInput);
+// custom hook
+import { useForm } from '../hooks/useForm';
 
-    const updateComment = ({ name, value }) => {
-        setInput(prev => ({ ...prev, [name]: value }));
+// contexts
+import { ThemeConfig, ThemeContext } from '../contexts/ThemeContext';
+
+const CommentInput = ({ addComment }) => {
+    const [input, setInput, resetInput] = useForm({ username: '', body: '' });
+    const { theme } = useContext(ThemeContext);
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        resetInput();
     };
 
     return (
-        <>
+        <form onSubmit={handleSubmit}>
             <div>
                 <input
+                    style={ThemeConfig[theme]}
                     type="text"
                     name="username"
                     value={input.username}
-                    onChange={event => updateComment(event.target)}
+                    onChange={setInput}
                     placeholder="username"
                 />
             </div>
             <div>
                 <textarea
+                    style={ThemeConfig[theme]}
                     name="body"
                     value={input.body}
-                    onChange={event => updateComment(event.target)}
+                    onChange={setInput}
                     placeholder="comment"
                 />
             </div>
             <div>
-                <button
-                    type="button"
-                    onClick={() => {
-                        addComment(input);
-                        setInput(defaultEmptyInput);
-                    }}
-                >
+                <button type="submit" onClick={() => addComment(input)}>
                     submit
                 </button>
             </div>
-        </>
+        </form>
     );
 };
 
