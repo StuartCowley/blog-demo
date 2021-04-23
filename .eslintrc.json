@@ -36,7 +36,6 @@
             {
                 "extensions": [".js"]
             }
-        ],
-        "react/prop-types": "off"
+        ]
     }
 }
