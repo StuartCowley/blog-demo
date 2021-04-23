@@ -5,4 +5,5 @@ export const CommentType = PropTypes.shape({
     name: PropTypes.string,
     body: PropTypes.string,
     email: PropTypes.string,
+    identityConsent: PropTypes.bool,
 });
