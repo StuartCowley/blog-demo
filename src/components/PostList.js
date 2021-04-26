@@ -6,18 +6,18 @@ import { PostType } from '../types/post.type';
 import { UserType } from '../types/user.type';
 
 // components
-import PostEntry from './PostEntry';
+import PostEntrySummary from './PostEntrySummary';
 
 const PostList = ({ posts, users, removePost }) => {
     return (posts || []).map(post => {
         const user = users.find(({ id }) => id === post.userId);
         return (
             <div key={post.id}>
-                <PostEntry post={post} user={user}>
+                <PostEntrySummary post={post} user={user}>
                     <button type="button" onClick={() => removePost(post.id)}>
                         remove
                     </button>
-                </PostEntry>
+                </PostEntrySummary>
             </div>
         );
     });

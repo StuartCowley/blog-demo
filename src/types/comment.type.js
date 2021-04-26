@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
 export const CommentType = PropTypes.shape({
-    uuid: PropTypes.string,
-    username: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string,
     body: PropTypes.string,
+    email: PropTypes.string,
 });

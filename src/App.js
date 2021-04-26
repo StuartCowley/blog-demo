@@ -1,67 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // components
 import PostList from './components/PostList';
 import Header from './components/Header';
+import Navigation from './components/Navigation';
+import About from './components/About';
+import Contact from './components/Contact';
+import Create from './components/Create';
+import PostEntry from './components/PostEntry';
 
 // contexts
 import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 
+// custom hooks
+import { useFetch } from './hooks/useFetch';
+
 // consts
-const API = 'https://jsonplaceholder.typicode.com';
+const API = process.env.REACT_APP_JSON_PLACEHOLDER_API;
 
 const App = () => {
     const [theme, setTheme] = useState('light');
-    const [posts, setPosts] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [error, setError] = useState(undefined);
-
-    const removePost = id => {
-        setPosts(prev => prev.filter(post => post.id !== id));
-    };
+    const [posts, addPost, removePost] = useFetch(`${API}/posts`);
+    const [users] = useFetch(`${API}/users`);
 
     useEffect(() => {
-        axios
-            .get(`${API}/posts`)
-            .then(response => {
-                if (response.data && response.status === 200) {
-                    setPosts(response.data);
-                }
-            })
-            .catch(() => setError('There was an error fetching posts'));
-
-        axios
-            .get(`${API}/users`)
-            .then(response => {
-                if (response.data && response.status === 200) {
-                    setUsers(response.data);
-                }
-            })
-            .catch(() => setError('There was an error fetching users'));
-    }, []);
-
-    useEffect(() => {
-        if (posts.length > 0) {
-            document.title = `My blog has ${posts.length} entries`;
+        if (posts?.length > 0) {
+            document.title = `My blog has ${posts?.length} entries`;
         }
     }, [posts]);
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
-            <div style={ThemeConfig[theme]}>
-                <Header />
-                {posts.length > 0 && users.length > 0 ? (
-                    <PostList
-                        posts={posts}
-                        users={users}
-                        removePost={removePost}
-                    />
-                ) : (
-                    !error && <div>Loading...</div>
-                )}
-                {error && <div>{error}</div>}
-            </div>
+            <Router>
+                <Navigation />
+                <Switch>
+                    <Route exact path="/">
+                        <div style={ThemeConfig[theme]}>
+                            <Header />
+                            {posts?.length > 0 && users?.length > 0 ? (
+                                <PostList
+                                    posts={posts}
+                                    users={users}
+                                    removePost={removePost}
+                                />
+                            ) : (
+                                <div>Loading...</div>
+                            )}
+                        </div>
+                    </Route>
+                    <Route path="/create">
+                        <Create addPost={addPost} />
+                    </Route>
+                    <Route path="/about" component={About} />
+                    <Route path="/contact" component={Contact} />
+                    <Route path="/post/:id" component={PostEntry} />
+                </Switch>
+            </Router>
         </ThemeContext.Provider>
     );
 };
