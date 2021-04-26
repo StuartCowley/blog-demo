@@ -6,7 +6,7 @@ const CommentList = ({ comments }) => {
     return (
         <ul>
             {comments.map(comment => (
-                <li key={comment.uuid}>
+                <li key={comment.uuid} data-testid="comment">
                     <p>
                         <strong>{comment.username}: </strong>
                         {comment.body}

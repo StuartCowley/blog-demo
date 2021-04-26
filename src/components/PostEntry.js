@@ -9,6 +9,7 @@ import { UserType } from '../types/user.type';
 // components
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
+import LikeCounter from './LikeCounter';
 
 const PostEntry = ({ post, user, children }) => {
     const { title, body } = post;
@@ -17,8 +18,12 @@ const PostEntry = ({ post, user, children }) => {
     const [likeCounter, setLikeCounter] = useState(0);
     const [comments, setComments] = useState([]);
 
-    const updateCounter = () => {
+    const increaseCounter = () => {
         setLikeCounter(previousCounter => previousCounter + 1);
+    };
+
+    const decreaseCounter = () => {
+        setLikeCounter(previousCounter => previousCounter - 1);
     };
 
     const addComment = comment => {
@@ -33,6 +38,7 @@ const PostEntry = ({ post, user, children }) => {
 
     useEffect(() => {
         return () => {
+            /* eslint-disable-next-line no-console */
             console.log(
                 `component PostEntry for post ${post.id}, has been unmounted`,
             );
@@ -45,10 +51,11 @@ const PostEntry = ({ post, user, children }) => {
             <h3>by {name}</h3>
             <p>{body}</p>
             <div>
-                <span>{likeCounter}</span>
-                <button type="button" onClick={() => updateCounter()}>
-                    +
-                </button>
+                <LikeCounter
+                    likeCounter={likeCounter}
+                    handleIncreaseCounter={increaseCounter}
+                    handleDecreaseCounter={decreaseCounter}
+                />
                 {children}
             </div>
             <CommentInput addComment={addComment} />

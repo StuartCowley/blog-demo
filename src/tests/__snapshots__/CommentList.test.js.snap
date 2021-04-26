@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentList renders as expected 1`] = `
+<DocumentFragment>
+  <ul>
+    <li
+      data-testid="comment"
+    >
+      <p>
+        <strong>
+          Test comment username 1: 
+        </strong>
+        Test comment body 1
+      </p>
+    </li>
+    <li
+      data-testid="comment"
+    >
+      <p>
+        <strong>
+          Test comment username 2: 
+        </strong>
+        Test comment body 2
+      </p>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
