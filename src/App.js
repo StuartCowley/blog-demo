@@ -23,7 +23,7 @@ import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 import { useFetch } from './hooks/useFetch';
 
 // styles
-import { PageWrapper } from './styles/GlobalStyles';
+import { PageWrapper, PageContainer } from './styles/GlobalStyles';
 
 // consts
 const API = process.env.REACT_APP_JSON_PLACEHOLDER_API;
@@ -48,15 +48,18 @@ const App = () => {
                         <Route exact path="/">
                             <div style={ThemeConfig[theme]}>
                                 <Header />
-                                {posts?.length > 0 && users?.length > 0 ? (
-                                    <PostList
-                                        posts={posts}
-                                        users={users}
-                                        removePost={removePost}
-                                    />
-                                ) : (
-                                    <div>Loading...</div>
-                                )}
+                                <PageContainer>
+                                    {posts?.length > 0 && users?.length > 0 ? (
+                                        <PostList
+                                            posts={posts}
+                                            users={users}
+                                            removePost={removePost}
+                                            theme={ThemeConfig[theme]}
+                                        />
+                                    ) : (
+                                        <div>Loading...</div>
+                                    )}
+                                </PageContainer>
                             </div>
                         </Route>
                         <Route path="/create">
