@@ -1,4 +1,5 @@
 import Styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PageWrapper = Styled.div`
     height: 100vh;
@@ -35,4 +36,34 @@ export const StyledButton = Styled.button`
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: 700;
+`;
+
+export const StyledNav = Styled.ul`
+    list-style: none;
+    display: inline-flex;
+    li:not(:last-of-type) {
+        margin-right: 3rem;
+    }
+`;
+
+export const NavLink = Styled(Link)`
+    position: relative;
+    font-size: 2rem;
+    color: #eee;
+
+    &::after {
+        content: '';
+        display: block;
+        background-color: #eee;
+        width: 0%;
+        height: 2px;
+        transition: width 0.5s;
+    }
+    &:hover::after {
+        width: 100%;
+    }
+`;
+
+export const PlainLink = Styled(Link)`
+    color: ${props => props.theme};
 `;

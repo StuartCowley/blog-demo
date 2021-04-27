@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Styled from 'styled-components';
 
-import { PageContainer } from '../styles/GlobalStyles';
+import { PageContainer, StyledNav, NavLink } from '../styles/GlobalStyles';
 
 const StyledNavWrap = Styled.nav`
     height: 4rem;
@@ -11,47 +10,22 @@ const StyledNavWrap = Styled.nav`
     background-color: #2f6c00;
 `;
 
-const StyledNav = Styled.ul`
-    list-style: none;
-    display: inline-flex;
-    li:not(:last-of-type) {
-        margin-right: 3rem;
-    }
-    a {
-        position: relative;
-        font-size: 2rem;
-        color: #eee;
-
-        &::after {
-            content: '';
-            display: block;
-            background-color: #eee;
-            width: 0%;
-            height: 2px;
-            transition: width 0.5s;
-        }
-        &:hover::after {
-            width: 100%;
-        }
-    }
-`;
-
 const Navigation = () => {
     return (
         <StyledNavWrap>
             <PageContainer>
                 <StyledNav>
                     <li>
-                        <Link to="/">Home</Link>
+                        <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
-                        <Link to="/create">Create</Link>
+                        <NavLink to="/create">Create</NavLink>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <NavLink to="/about">About</NavLink>
                     </li>
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <NavLink to="/contact">Contact</NavLink>
                     </li>
                 </StyledNav>
             </PageContainer>
