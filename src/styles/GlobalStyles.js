@@ -1,5 +1,12 @@
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+export const ColourPalette = {
+    white: '#eee',
+    black: '#333',
+    green: '#2f6c00',
+    grey: '#A9A9A9',
+};
 
 export const PageWrapper = Styled.div`
     height: 100vh;
@@ -36,6 +43,11 @@ export const StyledButton = Styled.button`
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: 700;
+    ${props =>
+        props.primary &&
+        css`
+            background: ${ColourPalette.grey};
+        `};
 `;
 
 export const StyledNav = Styled.ul`
@@ -49,12 +61,12 @@ export const StyledNav = Styled.ul`
 export const NavLink = Styled(Link)`
     position: relative;
     font-size: 2rem;
-    color: #eee;
+    color: ${ColourPalette.white};
 
     &::after {
         content: '';
         display: block;
-        background-color: #eee;
+        background-color: ${ColourPalette.white};
         width: 0%;
         height: 2px;
         transition: width 0.5s;

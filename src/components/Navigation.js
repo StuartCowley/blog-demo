@@ -1,13 +1,18 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import { PageContainer, StyledNav, NavLink } from '../styles/GlobalStyles';
+import {
+    PageContainer,
+    StyledNav,
+    NavLink,
+    ColourPalette,
+} from '../styles/GlobalStyles';
 
 const StyledNavWrap = Styled.nav`
     height: 4rem;
     display: flex;
     align-items: center;
-    background-color: #2f6c00;
+    background-color: ${ColourPalette.green};
 `;
 
 const Navigation = () => {

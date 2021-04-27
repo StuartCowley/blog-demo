@@ -24,6 +24,7 @@ const Header = () => {
                         light
                     </StyledButton>
                     <StyledButton
+                        primary
                         type="button"
                         onClick={() => setTheme('dark')}
                     >
