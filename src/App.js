@@ -22,6 +22,7 @@ import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 // custom hooks
 import { useFetch } from './hooks/useFetch';
 
+// styles
 import { PageWrapper } from './styles/GlobalStyles';
 
 // consts
