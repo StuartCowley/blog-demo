@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -16,8 +17,12 @@ import { ThemeConfig, ThemeContext } from './contexts/ThemeContext';
 // custom hooks
 import { useFetch } from './hooks/useFetch';
 
-// styles
-import { PageWrapper, PageContainer } from './styles/GlobalStyles';
+// Styles
+import {
+    PageWrapper,
+    PageContainer,
+    PostListWrapper,
+} from './styles/GlobalStyles';
 
 // consts
 const API = process.env.REACT_APP_JSON_PLACEHOLDER_API;
@@ -34,25 +39,28 @@ const App = () => {
     }, [posts]);
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-            <PageWrapper>
+        <PageWrapper>
+            <ThemeContext.Provider value={{ theme, setTheme }}>
                 <Router>
                     <Navigation />
                     <Switch>
                         <Route exact path="/">
                             <div style={ThemeConfig[theme]}>
-                                <Header />
                                 <PageContainer>
-                                    {posts?.length > 0 && users?.length > 0 ? (
-                                        <PostList
-                                            posts={posts}
-                                            users={users}
-                                            removePost={removePost}
-                                            theme={ThemeConfig[theme]}
-                                        />
-                                    ) : (
-                                        <div>Loading...</div>
-                                    )}
+                                    <Header />
+                                    <PostListWrapper>
+                                        {posts?.length > 0 &&
+                                        users?.length > 0 ? (
+                                            <PostList
+                                                posts={posts}
+                                                users={users}
+                                                removePost={removePost}
+                                                theme={theme}
+                                            />
+                                        ) : (
+                                            <div>Loading...</div>
+                                        )}
+                                    </PostListWrapper>
                                 </PageContainer>
                             </div>
                         </Route>
@@ -64,8 +72,8 @@ const App = () => {
                         <Route path="/post/:id" component={PostEntry} />
                     </Switch>
                 </Router>
-            </PageWrapper>
-        </ThemeContext.Provider>
+            </ThemeContext.Provider>
+        </PageWrapper>
     );
 };
 
