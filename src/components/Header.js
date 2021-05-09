@@ -3,25 +3,31 @@ import React, { useContext } from 'react';
 // contexts
 import { ThemeContext } from '../contexts/ThemeContext';
 
-import { PageContainer } from '../styles/GlobalStyles';
+import { StyledHeader, StyledButton } from '../styles/GlobalStyles';
 
 const Header = () => {
     const { setTheme } = useContext(ThemeContext);
 
     return (
-        <header className="App-header">
-            <PageContainer>
-                <h1>Blog Demo</h1>
-                <div>
-                    <button type="button" onClick={() => setTheme('light')}>
-                        light
-                    </button>
-                    <button type="button" onClick={() => setTheme('dark')}>
-                        dark
-                    </button>
-                </div>
-            </PageContainer>
-        </header>
+        <StyledHeader className="App-header">
+            <h1 className="header__title">Blog Demo</h1>
+            <div className="header__button-wrap">
+                <StyledButton
+                    primary
+                    type="button"
+                    onClick={() => setTheme('light')}
+                >
+                    light
+                </StyledButton>
+                <StyledButton
+                    secondary
+                    type="button"
+                    onClick={() => setTheme('dark')}
+                >
+                    dark
+                </StyledButton>
+            </div>
+        </StyledHeader>
     );
 };
 

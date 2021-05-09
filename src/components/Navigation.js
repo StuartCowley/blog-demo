@@ -1,30 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Styled from 'styled-components';
 
-import { PageContainer } from '../styles/GlobalStyles';
-
-const StyledNav = Styled.nav`
-    height: 48px;    
-    display: flex;
-    align-items: center;
-    margin: 0px;
-`;
+import { StyledNavWrap, StyledNav, NavLink } from '../styles/GlobalStyles';
 
 const Navigation = () => {
     return (
-        <StyledNav>
-            <PageContainer>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                        <Link to="/create">Create</Link>
-                        <Link to="/about">About</Link>
-                        <Link to="/contact">Contact</Link>
-                    </li>
-                </ul>
-            </PageContainer>
-        </StyledNav>
+        <StyledNavWrap>
+            <StyledNav>
+                <li className="header__title">
+                    <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/create">Create</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/about">About</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/contact">Contact</NavLink>
+                </li>
+            </StyledNav>
+        </StyledNavWrap>
     );
 };
 export default Navigation;

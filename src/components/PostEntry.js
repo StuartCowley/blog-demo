@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 // components
-import CommentList from './CommentList';
+import Comment from './Comment';
 import CommentInput from './CommentInput';
 import PostEntrySummary from './PostEntrySummary';
 
@@ -26,7 +26,11 @@ const PostEntry = () => {
             {comments && (
                 <>
                     <CommentInput addComment={addComment} postId={post.id} />
-                    <CommentList comments={comments} />
+                    <ul>
+                        {comments.map(comment => (
+                            <Comment key={comment.id} comment={comment} />
+                        ))}
+                    </ul>
                 </>
             )}
         </>
